@@ -17,6 +17,14 @@ use JsonSerializable;
 class Stock implements JsonSerializable
 {
     /**
+     * The BillbeeId of the Product
+     * @var int
+     *
+     * @DataField(name="BillbeeId", type="int")
+     */
+    protected $BillbeeId;
+    
+    /**
      * The SKU of the Product
      * @var string
      */
@@ -63,9 +71,10 @@ class Stock implements JsonSerializable
         return new Stock($product->sku, $product->stockCurrent);
     }
 
-    public function __construct($sku, $oldQuantity, $newQuantity = null)
+    public function __construct($sku, $oldQuantity, $newQuantity = null, $bbId = null)
     {
         $this->sku = $sku;
+        $this->BillbeeId = (int) $bbId;
         $this->oldQuantity = $oldQuantity;
         if ($newQuantity === null) {
             $newQuantity = $oldQuantity;
@@ -205,6 +214,7 @@ class Stock implements JsonSerializable
     public function jsonSerialize()
     {
         $data = [
+            'BillbeeId' => $this->BillbeeId,
             'Sku' => $this->sku,
             'Reason' => $this->reason,
             'OldQuantity' => $this->oldQuantity,
