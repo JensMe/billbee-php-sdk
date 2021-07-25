@@ -351,7 +351,7 @@ class Product
      * @var int
      * @DataField(name="ShippingProductId", type="int")
      */
-    public $shippingProductId = 0;
+    public $shippingProductId = null;
 
     /**
      * @var bool
