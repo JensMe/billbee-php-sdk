@@ -413,7 +413,7 @@ class Product
      *
      * @see ProductCondition
      */
-    public $condition = ProductCondition::BRAND_NEW;
+    public $condition = null;
 
     /**
      * @var float
